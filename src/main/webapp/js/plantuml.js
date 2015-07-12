@@ -52,19 +52,8 @@ $(document).ready(function(){
 		var src = $(this).attr("src");
 		var uml = $(this).attr("data-uml");
 		if (src == null) {
-			src = "http://127.0.0.1:9999/plantuml/png/" + encode64(deflate(uml, 9));
-			$(this).attr("src", src)
+			src = "http://127.0.0.1:9999/plantuml/png/" + encode64(deflate(unescape(encodeURIComponent(uml)), 9));
+			$(this).attr("src", src);
 		}
 	});
 });
-
-function plantuml_render(){
-	$("img").each(function () {
-		var src = $(this).attr("src");
-		var uml = $(this).attr("data-uml");
-		if (src == null) {
-			src = "http://127.0.0.1:9999/plantuml/png/" + encode64(deflate(uml, 9));
-			$(this).attr("src", src)
-		}
-	});
-}
