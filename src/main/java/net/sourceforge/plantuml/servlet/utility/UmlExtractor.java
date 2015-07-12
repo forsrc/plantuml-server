@@ -52,6 +52,13 @@ public class UmlExtractor {
         } catch (UnsupportedEncodingException uee) {
             text = "' invalid encoded string";
         }
+
+        if (text.startsWith("text=@start")) {
+            return text.replace("text=", "");
+        } 
+        if (text.startsWith("@start")) {
+            return text;
+        } 
         Transcoder transcoder = TranscoderUtil.getDefaultTranscoder();
         try {
             text = transcoder.decode(text);
